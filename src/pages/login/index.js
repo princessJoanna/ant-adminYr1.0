@@ -20,8 +20,8 @@ const Login = ({
       if (errors) {
         return
       }
-    
-      dispatch({ type: 'login/login', payload: values })
+     // dispatch({ type: 'query', payload: { id: match[1] } })
+      dispatch({ type: 'login/login',values})
     })
   }
 
@@ -33,22 +33,22 @@ const Login = ({
       </div>
       <form>
         <FormItem hasFeedback>
-          {getFieldDecorator('username', {
+          {getFieldDecorator('userName', {
             rules: [
               {
                 required: true,
               },
             ],
-          })(<Input onPressEnter={handleOk} placeholder="Username" />)}
+          })(<Input onPressEnter={handleOk} placeholder="userName" />)}
         </FormItem>
         <FormItem hasFeedback>
-          {getFieldDecorator('password', {
+          {getFieldDecorator('passWord', {
             rules: [
               {
                 required: true,
               },
             ],
-          })(<Input type="password" onPressEnter={handleOk} placeholder="Password" />)}
+          })(<Input type="passWord" onPressEnter={handleOk} placeholder="Password" />)}
         </FormItem>
         <Row>
           <Button type="primary" onClick={handleOk} loading={loading.effects.login}>
