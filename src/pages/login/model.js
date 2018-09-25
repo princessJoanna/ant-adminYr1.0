@@ -12,12 +12,19 @@ export default {
     }, { put, call, select }) {
       const data = yield call(login,values)
       const { locationQuery } = yield select(_ => _.app)
-    console.log(1111.,data)
       if (data.success) {
         yield put(routerRedux.push('/new'))
-      } else {
-        throw data
+        // const { from } = locationQuery
+        // yield put({ type: 'app/query' })
+        
+        // if (from && from !== '/login') {
+        //   yield put(routerRedux.push(from))
+        // } else {
+        //   yield put(routerRedux.push('/new'))
+        // }
       }
+
+
     },
     
   },
