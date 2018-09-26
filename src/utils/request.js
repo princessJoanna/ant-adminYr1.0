@@ -63,6 +63,16 @@ const fetch = (options) => {
         data: cloneData,
       })
     case 'post':
+      if(options.headers){
+        return axios({
+            method:'post',
+            url:url,
+            data:cloneData,
+            headers:{
+                'TOKEN':options.headers.TOKEN
+            }
+        })
+      }
       return axios.post(url, cloneData)
     case 'put':
       return axios.put(url, cloneData)
