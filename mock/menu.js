@@ -53,10 +53,11 @@ let database = [
 
   
 ]
+module.exports = database
 
-module.exports = {
+// module.exports = {
 
-  [`GET ${apiPrefix}/menus`] (req, res) {
-    res.status(200).json(database)
-  },
-}
+//   [`GET ${apiPrefix}/menus`] (req, res) {
+//     res.status(200).json(database)
+//   },
+// }

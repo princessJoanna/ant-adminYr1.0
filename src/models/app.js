@@ -8,8 +8,9 @@ import { parse } from 'qs'
 import config from 'config'
 import { EnumRoleType } from 'enums'
 import { query, logout } from 'services/app'
-import * as menusService from 'services/menus'
+// import * as menusService from 'services/menus'
 import queryString from 'query-string'
+import _menu from '../../mock/menu'
 
 const { prefix } = config
 
@@ -20,14 +21,7 @@ export default {
     permissions: {
       visit: [],
     },
-    menu: [
-      {
-        id: 1,
-        icon: 'laptop',
-        name: 'Dashboard',
-        router: '/dashboard',
-      },
-    ],
+    menu: _menu,
     menuPopoverVisible: false,
     siderFold: window.localStorage.getItem(`${prefix}siderFold`) === 'true',
     darkTheme: window.localStorage.getItem(`${prefix}darkTheme`) === 'true',
