@@ -6,6 +6,9 @@ import cloneDeep from 'lodash.clonedeep'
 import pathToRegexp from 'path-to-regexp'
 import { message } from 'antd'
 import { YQL, CORS } from './config'
+import AuthService from './auth-service'
+const auth = new AuthService();
+const TOKEN=auth.getToken();
 
 const fetch = (options) => {
   let {
@@ -63,13 +66,13 @@ const fetch = (options) => {
         data: cloneData,
       })
     case 'post':
-      if(options.headers){
+      if(options.needToken){
         return axios({
             method:'post',
             url:url,
             data:cloneData,
             headers:{
-                'TOKEN':options.headers.TOKEN
+                'TOKEN':TOKEN
             }
         })
       }

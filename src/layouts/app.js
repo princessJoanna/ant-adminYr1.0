@@ -90,7 +90,7 @@ const App = ({
       {children}
     </div>)
   }
-debugger
+
   return (
     <div>
       <Loader fullScreen spinning={loading.effects['app/query']} />

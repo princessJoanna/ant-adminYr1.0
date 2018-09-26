@@ -35,9 +35,10 @@ export default modelExtend(pageModel, {
           payload: {
             list: data.data,
             pagination: {
-              current: Number(payload.page) || 1,
-              pageSize: Number(payload.pageSize) || 10,
-              total: 80
+              defaultCurrent: Number(data.page) || 1,
+              pageSize: Number(data.pageSize) || 10,
+              total: data.total,
+              showSizeChanger:true
             },
           },
         })
@@ -51,7 +52,8 @@ export default modelExtend(pageModel, {
     
       return {
         ...state,
-        list
+        list,
+        pagination
       }
     },
 

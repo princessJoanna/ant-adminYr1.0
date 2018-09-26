@@ -18,6 +18,7 @@
     "highcharts-exporting": "^0.1.7",
     "highcharts-more": "^0.1.7",
     "jsonp": "^0.2.1",
+    "jwt-decode": "^2.2.0",
     "lodash.clonedeep": "^4.5.0",
     "lodash.isequal": "^4.5.0",
     "nprogress": "^0.2.0",

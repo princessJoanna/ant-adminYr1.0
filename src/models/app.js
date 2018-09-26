@@ -11,6 +11,8 @@ import { query, logout } from 'services/app'
 // import * as menusService from 'services/menus'
 import queryString from 'query-string'
 import _menu from '../../mock/menu'
+import AuthService from '../utils/auth-service'
+const auth = new AuthService();
 
 const { prefix } = config
 
@@ -107,6 +109,7 @@ export default {
     }, { call, put }) {
       const data = yield call(logout, parse(payload))
       if (data.success) {
+        auth.removeToken();
         yield put({ type: 'updateState', payload: {
           user: {},
           permissions: { visit: [] },
