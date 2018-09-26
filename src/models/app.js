@@ -110,12 +110,7 @@ export default {
         yield put({ type: 'updateState', payload: {
           user: {},
           permissions: { visit: [] },
-          menu: [{
-              id: 1,
-              icon: 'laptop',
-              name: 'Dashboard',
-              router: '/dashboard',
-            }],
+          menu: _menu,
         }})
         yield put({ type: 'query' })
       } else {

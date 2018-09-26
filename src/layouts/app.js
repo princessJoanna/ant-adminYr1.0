@@ -30,7 +30,7 @@ const App = ({
   pathname = pathname.startsWith('/') ? pathname : `/${pathname}`
   const { iconFontJS, iconFontCSS, logo } = config
   const current = menu.filter(item => pathToRegexp(item.route || '').exec(pathname))
-  const hasPermission = current.length ? permissions.visit.includes(current[0].id) : false
+  const hasPermission = current.length ? true: false//permissions.visit.includes(current[0].id) : false
   const { href } = window.location
 
   if (lastHref !== href) {
@@ -84,12 +84,13 @@ const App = ({
   }
 
   if (openPages && openPages.includes(pathname)) {
+    
     return (<div>
       <Loader fullScreen spinning={loading.effects['app/query']} />
       {children}
     </div>)
   }
-
+debugger
   return (
     <div>
       <Loader fullScreen spinning={loading.effects['app/query']} />
