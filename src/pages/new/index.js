@@ -93,32 +93,27 @@ const List = ({
     }
   }
   const handleTableChange = (pagination, filters, sorter) => {
-    const pager = this.state.pagination
-    pager.current = pagination.current
-    this.setState({
-      pagination: pager,
-      fetchData: {
-        results: pagination.pageSize,
-        page: pagination.current,
-        sortField: sorter.field,
-        sortOrder: sorter.order,
-        ...filters,
-      },
-    }, () => {
-      this.fetch()
-    })
+    // const pager = this.state.pagination
+    // pager.current = pagination.current
+    // this.setState({
+    //   pagination: pager,
+    //   fetchData: {
+    //     results: pagination.pageSize,
+    //     page: pagination.current,
+    //     sortField: sorter.field,
+    //     sortOrder: sorter.order,
+    //     ...filters,
+    //   },
+    // }, () => {
+    //   this.fetch()
+    // })
   }
-//   let pagination = {
-//     total: getList.pagination.total,
-//     defaultCurrent: getList.pagination.current,
-//     pageSize: getList.pagination.pageSize,
-//     showSizeChanger: true
-// } 
+
 
 return (
   <Page inner>
     <Filter {...filterProps} />
-    <Table columns={columns}  onChange={this.handleTableChange}   pagination={getList.pagination} rowKey={record => record.id} dataSource={getList.list} />
+    <Table columns={columns}  onChange={handleTableChange}   pagination={getList.pagination} rowKey={record => record.id} dataSource={getList.list} />
   </Page>
   )
 }
