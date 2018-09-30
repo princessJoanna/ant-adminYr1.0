@@ -93,20 +93,20 @@ const List = ({
     }
   }
   const handleTableChange = (pagination, filters, sorter) => {
-    // const pager = this.state.pagination
-    // pager.current = pagination.current
-    // this.setState({
-    //   pagination: pager,
-    //   fetchData: {
-    //     results: pagination.pageSize,
-    //     page: pagination.current,
-    //     sortField: sorter.field,
-    //     sortOrder: sorter.order,
-    //     ...filters,
-    //   },
-    // }, () => {
-    //   this.fetch()
-    // })
+    const pager = this.state.pagination
+    pager.current = pagination.current
+    this.setState({
+      pagination: pager,
+      fetchData: {
+        results: pagination.pageSize,
+        page: pagination.current,
+        // sortField: sorter.field,
+        // sortOrder: sorter.order,
+        ...filters,
+      },
+    }, () => {
+    //  this.fetch()
+    })
   }
 
 
