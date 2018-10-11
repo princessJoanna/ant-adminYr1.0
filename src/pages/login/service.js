@@ -1,7 +1,7 @@
 import { request, config } from 'utils'
 
 const { api } = config
-const { userLogin } = api
+const { userLogin,loginCode} = api
 
 export function login (values) {
   return request({
@@ -10,4 +10,3 @@ export function login (values) {
     data:values,
   })
 }
-

@@ -7,6 +7,7 @@ import styles from './index.less'
 
 const FormItem = Form.Item
 
+
 const Login = ({
   loading,
   dispatch,
@@ -26,6 +27,7 @@ const Login = ({
   }
 
   return (
+   
     <div className={styles.form}>
       <div className={styles.logo}>
         <img alt="logo" src={config.logo} />
@@ -50,14 +52,25 @@ const Login = ({
             ],
           })(<Input type="passWord" onPressEnter={handleOk} placeholder="Password" />)}
         </FormItem>
+        <FormItem hasFeedback>
+          {getFieldDecorator('code', {
+            rules: [
+              {
+                required: true,
+              },
+            ],
+          })(<Input type="text" onPressEnter={handleOk} placeholder="code" className={styles.codeTxt} />)}
+          <img src={loading.state} className={styles.codeImg}  />
+          <span>{loading.state}</span>
+        </FormItem>
         <Row>
           <Button type="primary" onClick={handleOk} loading={loading.effects.login}>
             Sign in
           </Button>
-          <p>
+          {/* <p>
             <span>Username：guest</span>
             <span>Password：guest</span>
-          </p>
+          </p> */}
         </Row>
 
       </form>
@@ -71,4 +84,4 @@ Login.propTypes = {
   loading: PropTypes.object,
 }
 
-export default connect(({ loading }) => ({ loading }))(Form.create()(Login))
+export default connect(({ login,loading }) => ({ login,loading }))(Form.create()(Login))

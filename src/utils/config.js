@@ -24,8 +24,7 @@ module.exports = {
     new: `${APIV1}/new/:id`,
     dashboard: `${APIV1}/dashboard`,
     menus: `${APIV1}/menus`,
-    weather: `${APIV1}/weather`,
-    v1test: `${APIV1}/test`,
-    v2test: `${APIV2}/test`,
+    loginCode:`${APIV2}/randomCode`,
+
   },
 }
