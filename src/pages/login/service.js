@@ -1,12 +1,13 @@
 import { request, config } from 'utils'
 
 const { api } = config
-const { userLogin,loginCode} = api
+const { userLogin} = api
 
-export function login (values) {
+export function login (payload) {
   return request({
     url: userLogin,
     method: 'post',
-    data:values,
+    data:payload,
+    fetchType:'formData'
   })
 }

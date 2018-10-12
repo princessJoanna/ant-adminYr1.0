@@ -8,7 +8,7 @@ import { message } from 'antd'
 import { YQL, CORS } from './config'
 import AuthService from './auth-service'
 const auth = new AuthService();
-const TOKEN=auth.getToken();
+const TOKEN = auth.getToken();
 
 const fetch = (options) => {
   let {
@@ -55,7 +55,7 @@ const fetch = (options) => {
     url = `http://query.yahooapis.com/v1/public/yql?q=select * from json where url='${options.url}?${encodeURIComponent(qs.stringify(options.data))}'&format=json`
     data = null
   }
-
+  let _headers = '';
   switch (method.toLowerCase()) {
     case 'get':
       return axios.get(url, {
@@ -66,17 +66,18 @@ const fetch = (options) => {
         data: cloneData,
       })
     case 'post':
-      if(options.needToken){
-        return axios({
-            method:'post',
-            url:url,
-            data:cloneData,
-            headers:{
-                'TOKEN':TOKEN
-            }
-        })
+      if (fetchType == 'formData') {
+        _headers = { "Content-Type": "multipart/form-data" }
       }
-      return axios.post(url, cloneData)
+      else if (options.needToken) {
+        _headers = { 'TOKEN': TOKEN }
+      }
+      return axios({
+        method: 'post',
+        url: url,
+        data: cloneData,
+        headers: _headers
+      })
     case 'put':
       return axios.put(url, cloneData)
     case 'patch':
@@ -86,7 +87,7 @@ const fetch = (options) => {
   }
 }
 
-export default function request (options) {
+export default function request(options) {
   if (options.url && options.url.indexOf('//') > -1) {
     const origin = `${options.url.split('//')[0]}//${options.url.split('//')[1].split('/')[0]}`
     if (window.location.origin !== origin) {

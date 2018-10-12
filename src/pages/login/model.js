@@ -10,49 +10,38 @@ export default {
     imgUrl:imgUrl
   },
   subscriptions: {
-    // setup ({ dispatch, history }) {
-    //   var payload={t:new Date().getMilliseconds()};
-    //     dispatch({
-    //       type: 'code',
-    //       payload,
-    //     })
-    // },
+    setup ({ dispatch, history }) {
+    },
   },
   effects: {
     
     * login ({
-    values,
+      payload,
     }, { put, call, select }) {
-      const data = yield call(login,values)
-
+      const data = yield call(login, payload)
+      const { locationQuery } = yield select(_ => _.app)
+      if (data.success) {
+        const { from } = locationQuery
+        // yield put({ type: 'app/query' })
+        // if (from && from !== '/login') {
+        //   yield put(routerRedux.push(from))
+        // } else {
+        //   yield put(routerRedux.push('/dashboard'))
+        // }
+      } else {
+        throw data
+      }
     },
-    // * code ({
-    //   payload,
-    // }, { call, put }) {
-    //   const data = yield call(code, payload)
-    //   const {
-    //     success, message, status, ...other
-    //   } = data
-    //   if (success) {
-    //     yield put({
-    //       type: 'codeSuccess',
-    //       payload: {
-    //         data: other,
-    //       },
-    //     })
-    //   } else {
-    //     throw data
-    //   }
-    // },
+
     
   },
   reducers: {
-    getCode (state) {
-    
-      const { data } = {imgUrl:'api/v2/randomCode?t=?t='+new Date().getTime()}
+
+    getCode (state) { 
+      let _imgurl='api/v2/randomCode?t=?t='+new Date().getTime();
       return {
         ...state,
-        data,
+        imgUrl:_imgurl,
       }
     },
   }

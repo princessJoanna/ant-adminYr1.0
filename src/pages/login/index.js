@@ -14,16 +14,28 @@ const Login = ({
   form: {
     getFieldDecorator,
     validateFieldsAndScroll,
-  },
+    
+  },login
 }) => {
+  let {imgUrl}=login;
+
+  // let imgUrl='api/v2/randomCode?t=?t='+new Date().getTime();
   function handleOk () {
     validateFieldsAndScroll((errors, values) => {
       if (errors) {
         return
       }
-     // dispatch({ type: 'query', payload: { id: match[1] } })
-      dispatch({ type: 'login/login',values})
+
+     //let payload = values;
+     var payload= new FormData();
+     payload.append('name','test');
+
+      dispatch({ type: 'login/login',payload});
     })
+  }
+  function resetCode(){
+ 
+    dispatch({ type: 'login/getCode'})
   }
 
   return (
@@ -35,37 +47,36 @@ const Login = ({
       </div>
       <form>
         <FormItem hasFeedback>
-          {getFieldDecorator('userName', {
+          {getFieldDecorator('opCode', {
             rules: [
               {
                 required: true,
               },
             ],
-          })(<Input onPressEnter={handleOk} placeholder="userName" />)}
+          })(<Input onPressEnter={handleOk} placeholder="opCode" />)}
         </FormItem>
         <FormItem hasFeedback>
-          {getFieldDecorator('passWord', {
+          {getFieldDecorator('opPassword', {
             rules: [
               {
                 required: true,
               },
             ],
-          })(<Input type="passWord" onPressEnter={handleOk} placeholder="Password" />)}
+          })(<Input type="passWord" onPressEnter={handleOk} placeholder="opPassword" />)}
         </FormItem>
         <FormItem hasFeedback>
-          {getFieldDecorator('code', {
+          {getFieldDecorator('randCode', {
             rules: [
               {
                 required: true,
               },
             ],
-          })(<Input type="text" onPressEnter={handleOk} placeholder="code" className={styles.codeTxt} />)}
-          <img src={loading.state} className={styles.codeImg}  />
-          <span>{loading.state}</span>
+          })(<Input type="text" onPressEnter={handleOk} placeholder="randCode" className={styles.codeTxt} />)}
+          <img src={imgUrl} className={styles.codeImg} onClick={resetCode}  />
         </FormItem>
         <Row>
           <Button type="primary" onClick={handleOk} loading={loading.effects.login}>
-            Sign in
+           sign in
           </Button>
           {/* <p>
             <span>Username：guest</span>
