@@ -67,17 +67,33 @@ const fetch = (options) => {
       })
     case 'post':
       if (fetchType == 'formData') {
-        _headers = { "Content-Type": "multipart/form-data" }
+        _headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+        let ret = ''
+          return axios({
+          method: 'post',
+          url: url,
+          transformRequest: [function (cloneData) {
+            for (let it in cloneData) {
+              ret += encodeURIComponent(it) + '=' + encodeURIComponent(cloneData[it]) + '&'
+            }
+            ret=ret.substring(0,ret.length-1)+'&format=json';
+           return ret;
+          }],
+          data: cloneData,
+          headers: _headers
+        })
       }
-      else if (options.needToken) {
+       if (options.needToken) {
         _headers = { 'TOKEN': TOKEN }
+        return axios({
+          method: 'post',
+          url: url,
+          data: cloneData,
+          headers: _headers
+        })
       }
-      return axios({
-        method: 'post',
-        url: url,
-        data: cloneData,
-        headers: _headers
-      })
+      return axios.post(url, cloneData)
+   
     case 'put':
       return axios.put(url, cloneData)
     case 'patch':

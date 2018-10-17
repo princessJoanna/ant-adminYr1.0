@@ -13,64 +13,61 @@ import Filter from './components/Filter'
 const FormItem = Form.Item
 
 const List = ({
-  getList,dispatch
+  loading,dispatch,getList
 }) => {
+  const handleMenuClick = (record, e) => {
+    if (e.key === '1') {
+      //onEditItem(record)
+    } else if (e.key === '2') {
+      confirm({
+        title: 'Are you sure delete this record?',
+        onOk () {
+         // onDeleteItem(record.id)
+        },
+      })
+    }
+  }
   const columns = [
     {
-      title: 'Avatar',
-      dataIndex: 'avatar',
-      key: 'avatar',
-      width: 64,
-      className: styles.avatar,
-      render: text => <img alt="avatar" width={24} src={text} />,
+      title: '标题',
+      dataIndex: 'title',
+      key: 'title',
     },
      {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-      render: (text, record) => <Link to={`new/${record.id}`}>{text}</Link>,
+      title: 'createTime',
+      dataIndex: 'createTime',
+      key: 'createTime',
     },
      {
-      title: 'NickName',
-      dataIndex: 'nickName',
-      key: 'nickName',
+      title: 'updateTime',
+      dataIndex: 'updateTime',
+      key: 'updateTime',
     }, {
       title: 'Age',
       dataIndex: 'age',
       key: 'age',
-    }, {
-      title: 'Gender',
-      dataIndex: 'isMale',
-      key: 'isMale',
-      render: text => (<span>{text
-        ? 'Male'
-        : 'Female'}</span>),
-    }, {
-      title: 'Phone',
-      dataIndex: 'phone',
-      key: 'phone',
-    }, {
-      title: 'Email',
-      dataIndex: 'email',
-      key: 'email',
-    }, {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-    }, {
-      title: 'CreateTime',
-      dataIndex: 'createTime',
-      key: 'createTime',
-    }, {
-      title: 'Operation',
-      key: 'operation',
+    }, 
+    // {
+    //   title: 'Gender',
+    //   dataIndex: 'isMale',
+    //   key: 'isMale',
+    //   render: text => (<span>{text
+    //     ? 'Male'
+    //     : 'Female'}</span>),
+    // }, 
+    {
+      title: '操作',
+      dataIndex: 'informationId',
+      key: 'informationId',
       width: 100,
       render: (text, record) => {
-       // return <DropOption onMenuClick={e => handleMenuClick(record, e)} menuOptions={[{ key: '1', name: 'Update' }, { key: '2', name: 'Delete' }]} />
+        return <DropOption onMenuClick={e => handleMenuClick(record, e)} menuOptions={[{ key: '1', name: 'Update' }, { key: '2', name: 'Delete' }]} />
       },
     },
+    
   ]
-  const { query, pathname } = location
+  const { query, pathname } = location;
+  let {list,pagination}=getList;
   const handleRefresh = (newQuery) => {
     dispatch(routerRedux.push({
       pathname,
@@ -93,27 +90,20 @@ const List = ({
     }
   }
   const handleTableChange = (pagination, filters, sorter) => {
-    const pager = this.state.pagination
-    pager.current = pagination.current
-    this.setState({
-      pagination: pager,
-      fetchData: {
-        results: pagination.pageSize,
-        page: pagination.current,
-        // sortField: sorter.field,
-        // sortOrder: sorter.order,
-        ...filters,
-      },
-    }, () => {
-    //  this.fetch()
+    const payload = location.query || { page: pagination.current||1, pageSize: pagination.pageSize||10, };
+    dispatch({
+      type: 'getList/querylist',
+      payload
     })
+
   }
 
 
 return (
   <Page inner>
     <Filter {...filterProps} />
-    <Table columns={columns}  onChange={handleTableChange}   pagination={getList.pagination} rowKey={record => record.id} dataSource={getList.list} />
+    <Table columns={columns}  onChange={handleTableChange}   pagination={pagination} rowKey={record => record.id} dataSource={list} />
+    {/* <Table columns={columns}  onChange={handleTableChange}   pagination={getList.pagination} rowKey={record => record.id} dataSource={getList.list} /> */}
   </Page>
   )
 }
@@ -122,5 +112,5 @@ List.propTypes = {
   getList: PropTypes.object,
   dispatch: PropTypes.func,
 }
-export default connect(({ getList, loading }) => ({ getList, loading:loading.models.getList }))(List)
+export default connect(({ login,loading,getList}) => ({ login,loading,getList }))(List)
 

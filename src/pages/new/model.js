@@ -19,7 +19,7 @@ export default modelExtend(pageModel, {
         if (location.pathname === '/new') {
           const payload = location.query || { page: 1, pageSize: 10 }
           dispatch({
-            type: 'query',
+            type: 'querylist',
             payload,
           })
         }
@@ -27,17 +27,17 @@ export default modelExtend(pageModel, {
     },
   },
   effects: {
-    * query ({ payload = {} }, { call, put }) {
+    * querylist ({ payload = {} }, { call, put }) {
       const data = yield call(query, payload)
       if (data) {
         yield put({
           type: 'querySuccess',
           payload: {
-            list: data.data,
+            list: data.body.list,
             pagination: {
-              defaultCurrent: Number(data.page) || 1,
-              pageSize: Number(data.pageSize) || 10,
-              total: data.total,
+              defaultCurrent: Number(data.body.page) || 1,
+              pageSize: Number(data.body.pageSize) || 10,
+              total: data.body.totalCount,
               showSizeChanger:true
             },
           },
@@ -49,7 +49,6 @@ export default modelExtend(pageModel, {
   reducers: {
     querySuccess (state, { payload }) {
       const { list ,pagination} = payload
-    
       return {
         ...state,
         list,

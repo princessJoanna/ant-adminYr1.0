@@ -1,13 +1,14 @@
 import { request, config } from 'utils'
 
 const { api } = config
-const { users } = api
+const { newlist } = api
 
 export function query (params) {
   return request({
-    url: users,
-    method: 'get',
+    url: newlist,
+    method: 'post',
     data: params,
+    needToken:true
   })
 }
 

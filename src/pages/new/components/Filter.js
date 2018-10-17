@@ -3,6 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { FilterItem } from 'components'
 import { Form, Button, Row, Col, DatePicker, Input, Cascader, Switch } from 'antd'
+import styles from '../index.less'
 
 const { Search } = Input
 
@@ -32,7 +33,6 @@ const Filter = ({
   const handleFields = (fields) => {
     return fields
   }
-
   const handleSubmit = () => {
     let fields = getFieldsValue()
     fields = handleFields(fields)
@@ -72,8 +72,8 @@ const Filter = ({
       <Col {...TwoColProps} xl={{ span: 10 }} md={{ span: 24 }} sm={{ span: 24 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
           <div>
-            <Button type="primary" className="margin-right" onClick={handleSubmit}>Search</Button>
-            <Button onClick={handleReset}>Reset</Button>
+            <Button type="primary" onClick={handleSubmit}>Search</Button>
+            <Button onClick={handleReset} className={styles.resetMenu}>Reset</Button>
            <a href="./new/add">
             <Button type="primary"  >新增</Button>
            </a>

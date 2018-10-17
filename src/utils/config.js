@@ -1,5 +1,6 @@
 const APIV1 = '/api/v1'
 const APIV2 = '/api/v2'
+const mall='/plutus2-mall/'
 
 module.exports = {
   name: 'yunrong',
@@ -15,10 +16,11 @@ module.exports = {
   APIV2,
   api: {
     userLogin: `${APIV2}/loginIn`,
+    keyPair: `${APIV2}/keyPair`,
     userLogout: `${APIV1}/user/logout`,
     userInfo: `${APIV2}/userInfo`,
     users: `${APIV1}/users`,
-    news: `${APIV1}/users`,
+    newlist: `${APIV1}${mall}contentmanagement/informationquery`,
     posts: `${APIV1}/posts`,
     user: `${APIV1}/user/:id`,
     new: `${APIV1}/new/:id`,
