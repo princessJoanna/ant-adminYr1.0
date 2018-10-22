@@ -37,13 +37,8 @@ export default {
   theme: "./theme.config.js",
   // 接口代理示例
   proxy: {
-    // "/api/v1/weather": {
-    //   "target": "https://api.seniverse.com/",
-    //   "changeOrigin": true,
-    //   "pathRewrite": { "^/api/v1/weather": "/v3/weather" }
-    // },
     "/api/v2": {
-      "target": "http://10.139.33.158:17944",//wpc http://192.168.121.192:8085
+      "target": "http://10.139.33.158:17942",//wpc http://192.168.121.192:8085
       "changeOrigin": true,
       "pathRewrite": { "^/api/v2" : "/" }
     }

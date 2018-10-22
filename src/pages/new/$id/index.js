@@ -1,16 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'dva'
-import { Upload, Button, Icon, Select,Input } from 'antd'
-import styles from './index.less'
-const { TextArea } = Input;
-
-const Option = Select.Option
+import {  Select,Input } from 'antd'
+import PicturesWall from '../components/uploadPic'
+import EditorDemo from '../components/bEditor'
 
 const Edit = ({ newDetail }) => {
   const Option = Select.Option
+ 
   const handleChange=(value)=>{
-    console.log(`selected ${value}`);
+    console.log(`selected ${value}`)
   }
   return (<div className="content-inner">
     <div>
@@ -23,11 +22,13 @@ const Edit = ({ newDetail }) => {
     </div>
     <div>
       <div style={{ margin: '10px 0' }}>
-        <Input placeholder="请输入资讯标题" />
+        <Input placeholder="请输入资讯标题" style={{ width: '300px' }} />
       </div>
-      <TextArea placeholder="请输入资讯内容" autosize={{ minRows: 6, maxRows: 1}} />
+      <PicturesWall />
+      {/* <TextArea placeholder="请输入资讯内容" autosize={{ minRows: 6, maxRows: 1}} /> */}
 
     </div>
+    <EditorDemo />
   </div>)
 }
 

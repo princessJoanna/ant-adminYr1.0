@@ -5,10 +5,7 @@ export function login (payload) {
   return request({
     url: userLogin,
     method: 'post',
-    data:payload,
-    fetchType:'formData'
-
-
+    data:payload
   })
 }
 export function pair (payload) {

@@ -1,8 +1,11 @@
 import { routerRedux } from 'dva/router'
 import { login,pair } from './service'
+import { config } from 'utils'
 import AuthService from '../../utils/auth-service'
 const auth = new AuthService();
-let imgUrl='api/v2/randomCode?t=?t='+new Date().getTime();
+const { api } = config
+const { loginCode} = api
+let imgUrl=loginCode+new Date().getTime();
 export default {
   namespace: 'login',
 
@@ -11,6 +14,7 @@ export default {
     keyCode:''
   },
   subscriptions: {
+
     setup ({ dispatch, history }) {
       const payload={format:'jsonn'}
       dispatch({
@@ -26,17 +30,19 @@ export default {
     }, { put, call, select }) {
       const data = yield call(login, payload)
 
-      const { locationQuery } = yield select(_ => _.app)
-      if (data.response.success) {
+     // const { locationQuery } = yield select(_ => _.app)
+      //test
+   
+      if (data.success) {
         const { from } = locationQuery
-        // yield put({ type: 'app/query' })
         if (from && from !== '/login') {
           yield put(routerRedux.push(from))
         } else {
           yield put(routerRedux.push('/new'))
         }
       } else {
-        throw data
+        yield put(routerRedux.push('/new/1000'))
+        // throw data
       }
     },
       *keyPair({
@@ -60,7 +66,7 @@ export default {
   reducers: {
 
     getCode (state) { 
-      const _imgurl='api/v2/randomCode?t=?t='+new Date().getTime();
+      const _imgurl=loginCode+new Date().getTime();
       return {
         ...state,
         imgUrl:_imgurl,

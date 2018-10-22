@@ -117,9 +117,9 @@ const App = ({
             <Bread {...breadProps} />
             {hasPermission ? children : <Error />}
           </Content>
-          <Footer >
+          {/* <Footer >
             {config.footerText}
-          </Footer>
+          </Footer> */}
         </Layout>
       </Layout>
     </div>
