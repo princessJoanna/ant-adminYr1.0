@@ -7,8 +7,8 @@ import pathToRegexp from 'path-to-regexp'
 import { message } from 'antd'
 import { YQL, CORS } from './config'
 import AuthService from './auth-service'
-const auth = new AuthService();
-const TOKEN = auth.getToken();
+const auth = new AuthService()
+const TOKEN = auth.getToken()
 
 const fetch = (options) => {
   let {
@@ -55,7 +55,7 @@ const fetch = (options) => {
     url = `http://query.yahooapis.com/v1/public/yql?q=select * from json where url='${options.url}?${encodeURIComponent(qs.stringify(options.data))}'&format=json`
     data = null
   }
-  let _headers = '';
+  let _headers = ''
   switch (method.toLowerCase()) {
     case 'get':
       return axios.get(url, {
@@ -66,8 +66,8 @@ const fetch = (options) => {
         data: cloneData,
       })
     case 'post':
-      if (fetchType == 'formData') {
-        _headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+      if (fetchType === 'formData') {
+        _headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
         let ret = ''
           return axios({
           method: 'post',
@@ -89,10 +89,16 @@ const fetch = (options) => {
           method: 'post',
           url: url,
           data: cloneData,
-          headers: _headers
+          headers: _headers,
         })
       }
-      return axios.post(url, cloneData)
+
+      // return axios({
+      //   method: 'post',
+      //   url: url,
+      //   data: cloneData,
+      // })
+     return axios.post(url, cloneData)
    
     case 'put':
       return axios.put(url, cloneData)

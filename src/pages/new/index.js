@@ -5,19 +5,20 @@ import { Button, Row, Form, Input } from 'antd'
 import { config } from 'utils'
 import { routerRedux } from 'dva/router'
 import styles from './index.less'
-import { Table, Divider, Tag } from 'antd';
+import { Table, Divider, Tag,Modal } from 'antd'
 import { Link } from 'react-router-dom'
-import { Page } from 'components'
+import { Page,DropOption } from 'components'
 import queryString from 'query-string'
 import Filter from './components/Filter'
 const FormItem = Form.Item
+const { confirm } = Modal
 
 const List = ({
   loading,dispatch,getList
 }) => {
   const handleMenuClick = (record, e) => {
     if (e.key === '1') {
-      //onEditItem(record)
+      dispatch(routerRedux.push('/new/'+record.informationId))
     } else if (e.key === '2') {
       confirm({
         title: 'Are you sure delete this record?',
@@ -42,20 +43,8 @@ const List = ({
       title: 'updateTime',
       dataIndex: 'updateTime',
       key: 'updateTime',
-    }, {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-    }, 
-    // {
-    //   title: 'Gender',
-    //   dataIndex: 'isMale',
-    //   key: 'isMale',
-    //   render: text => (<span>{text
-    //     ? 'Male'
-    //     : 'Female'}</span>),
-    // }, 
-    {
+    } 
+    ,{
       title: '操作',
       dataIndex: 'informationId',
       key: 'informationId',
@@ -68,6 +57,11 @@ const List = ({
   ]
   const { query, pathname } = location;
   let {list,pagination}=getList;
+  const goAdd=()=>{
+    dispatch(routerRedux.push('/newAdd'))
+  }
+
+
   const handleRefresh = (newQuery) => {
     dispatch(routerRedux.push({
       pathname,
@@ -97,12 +91,11 @@ const List = ({
     })
 
   }
-
-
 return (
   <Page inner>
     <Filter {...filterProps} />
-    <Table columns={columns}  onChange={handleTableChange}   pagination={pagination} rowKey={record => record.id} dataSource={list} />
+    <Button type="primary"  onClick={goAdd} className={styles.addBtn}>新增</Button>
+    <Table columns={columns}  onChange={handleTableChange}   pagination={pagination} rowKey={record => record.informationId} dataSource={list} />
     {/* <Table columns={columns}  onChange={handleTableChange}   pagination={getList.pagination} rowKey={record => record.id} dataSource={getList.list} /> */}
   </Page>
   )
@@ -113,4 +106,3 @@ List.propTypes = {
   dispatch: PropTypes.func,
 }
 export default connect(({ login,loading,getList}) => ({ login,loading,getList }))(List)
-

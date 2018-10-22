@@ -21,7 +21,7 @@ module.exports = {
     userLogout: `${APIV1}/user/logout`,
     userInfo: `${APIV2}/userInfo`,
     users: `${APIV1}/users`,
-    newlist: `${APIV1}${mall}contentmanagement/informationquery`,
+    newlist: `${APIV2}${mall}contentmanagement/informationquery`, 
     posts: `${APIV1}/posts`,
     user: `${APIV1}/user/:id`,
     new: `${APIV1}/new/:id`,

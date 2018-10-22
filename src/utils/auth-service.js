@@ -1,9 +1,9 @@
-import decode from "jwt-decode";
-import axios from "axios";
+import decode from "jwt-decode"
+import axios from "axios"
 
 export default class AuthService {
   loggedIn() {
-    const token = this.getToken();
+    const token = this.getToken()
     return token
   }
   isTokenExpired(token) {
@@ -19,13 +19,13 @@ export default class AuthService {
     }
   }
   setToken(token) {
-    window.localStorage.setItem("TOKEN", token);
+    window.localStorage.setItem("TOKEN", token)
   }
   getToken() {
-    return window.localStorage.getItem("TOKEN");
+    return window.localStorage.getItem("TOKEN")
   }
   removeToken() {
-    window.localStorage.removeItem("TOKEN");
+    window.localStorage.removeItem("TOKEN")
   }
   // logout() {
   //   axios.post("/api/login/outlogin").then(data => {
@@ -35,6 +35,6 @@ export default class AuthService {
   //   })
   // }
   getProfile() {
-    return decode(this.getToken());
+    return decode(this.getToken())
   }
 }

@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'dva'
 import {  Select,Input } from 'antd'
 import PicturesWall from '../components/uploadPic'
-import EditorDemo from '../components/bEditor'
+// import ReactUeditor from 'ifanrx-react-ueditor'
+
+
 
 const Edit = ({ newDetail }) => {
   const Option = Select.Option
@@ -28,7 +30,13 @@ const Edit = ({ newDetail }) => {
       {/* <TextArea placeholder="请输入资讯内容" autosize={{ minRows: 6, maxRows: 1}} /> */}
 
     </div>
-    <EditorDemo />
+    {/* <ReactUeditor
+        config={{zIndex: 1001}}
+        plugins={['uploadImage', 'insertCode']}
+     
+        ueditorPath="/static/uf8-php"
+        value="Hello World!"
+      /> */}
   </div>)
 }
 

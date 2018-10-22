@@ -1,7 +1,7 @@
 /* global window */
 import modelExtend from 'dva-model-extend'
 import { config } from 'utils'
-import * as usersService from './services/list'
+import * as usersService from './server'
 import { pageModel } from 'utils/model'
 
 const { query } = usersService
@@ -17,7 +17,7 @@ export default modelExtend(pageModel, {
     setup ({ dispatch, history }) {
       history.listen((location) => {
         if (location.pathname === '/new') {
-          const payload = location.query || { page: 1, pageSize: 10 }
+          const payload = location.query ||{"pageSize":10,"page":1}
           dispatch({
             type: 'querylist',
             payload,
@@ -27,9 +27,9 @@ export default modelExtend(pageModel, {
     },
   },
   effects: {
-    * querylist ({ payload = {} }, { call, put }) {
+    * querylist ({ payload }, { call, put }) {
       const data = yield call(query, payload)
-      if (data) {
+      if (data.success&&data.body&&data.body.list) {
         yield put({
           type: 'querySuccess',
           payload: {

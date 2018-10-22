@@ -1,9 +1,11 @@
 /* global document */
 import React from 'react'
 import PropTypes from 'prop-types'
+import { routerRedux } from 'dva/router'
 import { FilterItem } from 'components'
 import { Form, Button, Row, Col, DatePicker, Input, Cascader, Switch } from 'antd'
 import styles from '../index.less'
+
 
 const { Search } = Input
 
@@ -60,13 +62,14 @@ const Filter = ({
     fields = handleFields(fields)
     onFilterChange(fields)
   }
-  const { name } = filter
+
+  const { searchContent } = filter
 
 
   return (
     <Row gutter={24}>
       <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }}>
-        {getFieldDecorator('name', { initialValue: name })(<Search placeholder="Search Name" onSearch={handleSubmit} />)}
+        {getFieldDecorator('searchContent', { initialValue: searchContent })(<Search placeholder="Search Name" onSearch={handleSubmit} />)}
       </Col>
      
       <Col {...TwoColProps} xl={{ span: 10 }} md={{ span: 24 }} sm={{ span: 24 }}>
@@ -74,9 +77,9 @@ const Filter = ({
           <div>
             <Button type="primary" onClick={handleSubmit}>Search</Button>
             <Button onClick={handleReset} className={styles.resetMenu}>Reset</Button>
-           <a href="./new/add">
-            <Button type="primary"  >新增</Button>
-           </a>
+        
+          
+        
           </div>
         
         </div>
