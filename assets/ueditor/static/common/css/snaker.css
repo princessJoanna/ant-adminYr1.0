@@ -1,0 +1,108 @@
+body {
+	margin: 0;
+	pading: 0;
+	text-align: left;
+	font-family: Arial, sans-serif, Helvetica, Tahoma;
+	font-size: 12px;
+	line-height: 1.5;
+	color: black;
+}
+
+.node {
+	width: 119px;
+	height:26px;
+	line-height:26px;
+	text-align: left;
+	vertical-align: middle;
+	border-top: 1px solid #DDD;
+	padding-left:5px;
+}
+
+.mover {
+	border: 1px solid #ddd;
+	background-color: #ddd;
+}
+
+.selected {
+	background-color: #ECECEC;
+}
+
+.state {
+	
+}
+
+#pointer {
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#path {
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#task {
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#state {
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#toolbox {
+    border:1px solid #DDD;
+	position: absolute;
+	top: 10;
+	left: 10;
+	background-color: #fff;
+	width: 120px;
+	cursor: default;
+}
+#toolbox_handle {
+	width:100%;
+	height:30px;
+	line-height:30px;
+	align:center;
+	text-align:left;
+	font-weight: bold;
+	background-color:#ECECEC;
+}
+#properties {
+    border:1px solid #DDD;
+	position: absolute;
+	top: 400;
+	right: 10;
+	width: 560px;
+	padding: 3px;
+}
+#properties_handle {
+	height:26px;
+	line-height:26px;
+	border:1px solid #DDD;
+	margin-top:1px;
+	font-weight: bold;
+	align:center;
+	text-align:left;
+}
+.properties_all {
+	border-right:1px solid #DDD;
+	width:100%;
+	text-align:left;
+	font-family: Arial, sans-serif, Helvetica, Tahoma;
+	font-size: 12px;
+}
+.properties_name {
+	border-left:1px solid #DDD;
+	border-bottom:1px solid #DDD;
+	font-weight: bold;
+	text-align:left;
+	width:100px;
+}
+.properties_value {
+	border-left:1px solid #DDD;
+	border-bottom:1px solid #DDD;
+	height: 24px;
+	width:460px;
+}

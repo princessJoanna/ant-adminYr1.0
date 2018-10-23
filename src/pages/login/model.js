@@ -2,6 +2,7 @@ import { routerRedux } from 'dva/router'
 import { login,pair } from './service'
 import { config } from 'utils'
 import AuthService from '../../utils/auth-service'
+import { message} from 'antd'
 
 const auth = new AuthService()
 const { api } = config
@@ -35,7 +36,8 @@ export default {
       //test
    
       if (data.success) {
-        auth.setToken(data.body.tokenId)
+          auth.setToken('TOKEN',data.body.tokenId)
+          auth.setToken('OPID',data.body.opId)
         const { from } = locationQuery
         if (from && from !== '/login') {
           yield put(routerRedux.push(from))
@@ -43,8 +45,8 @@ export default {
           yield put(routerRedux.push('/new'))
         }
       } else {
-        // yield put(routerRedux.push('/new/1000'))
-        // throw data
+         message.error(data.errMsg);
+       
       }
     }
     ,* keyPair({

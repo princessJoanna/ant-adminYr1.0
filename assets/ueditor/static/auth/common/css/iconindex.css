@@ -1,0 +1,22 @@
+@charset "utf-8";
+/* CSS Document */
+@font-face {font-family: "index";
+  src: url('../fonts/index.eot'); /* IE9*/
+  src: url('../fonts/index.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../fonts/index.woff') format('woff'), /* chrome、firefox */
+  url('../fonts/index.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('../fonts/index.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+[class^="index-"], [class*="index-"] {font-family: 'index','microsoft yahei';speak: none;font-style: normal;font-variant: normal;text-transform: none;line-height: 1;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
+.index-clock:before { content: "\e600"; }
+.index-examuser:before { content: "\e601"; }
+.index-exam:before { content: "\e602"; }
+.index-survey:before { content: "\e603"; }
+.index-price:before { content: "\e604"; }
+.index-over:before { content: "\e605"; }
+.index-clock {*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe600;'); }
+.index-examuser {*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe601;'); }
+.index-exam {*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe602;'); }
+.index-survey {*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe603;'); }
+.index-price {*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe604;'); }
+.index-over {*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe605;'); }

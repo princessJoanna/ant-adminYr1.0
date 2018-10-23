@@ -8,7 +8,7 @@ import { message } from 'antd'
 import { YQL, CORS } from './config'
 import AuthService from './auth-service'
 const auth = new AuthService()
-const TOKEN = auth.getToken()
+
 
 const fetch = (options) => {
   let {
@@ -84,7 +84,7 @@ const fetch = (options) => {
         })
       }
        if (options.needToken) {
-        _headers = { 'TOKEN': TOKEN }
+        _headers = { 'TOKEN': auth.getToken('TOKEN') }
         return axios({
           method: 'post',
           url: url,

@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom'
 import { Page,DropOption } from 'components'
 import queryString from 'query-string'
 import Filter from './components/Filter'
+import AuthService from '../../utils/auth-service'
+const auth = new AuthService()
 const FormItem = Form.Item
 const { confirm } = Modal
 
@@ -23,7 +25,13 @@ const List = ({
       confirm({
         title: 'Are you sure delete this record?',
         onOk () {
-         // onDeleteItem(record.id)
+          const payload={};
+          payload.informationId=record.informationId;
+          payload.operator=auth.getToken('OPID');
+          dispatch({
+            type: 'getList/dellist',
+            payload
+          })
         },
       })
     }

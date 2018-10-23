@@ -20,7 +20,7 @@ function getBase64(img, callback) {
     return isJPG && isLt2M;
   }
   
-  export default class Avatar extends React.Component {
+  export default class UploadPic extends React.Component {
     state = {
       loading: false,
     };

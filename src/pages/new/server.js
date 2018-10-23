@@ -1,21 +1,21 @@
 import { request, config } from 'utils'
 
 const { api } = config
-const { newlist } = api
+const { newlist ,delnews} = api
 
 export function query (params) {
   return request({
     url: newlist,
     method: 'post',
-    data: params,
-    fetchType:'JSON',
+    data: params
   })
 }
 
 export function remove (params) {
   return request({
-    url: users + '/delete',
+    url: delnews,
     method: 'post',
     data: params,
+    needToken:true
   })
 }

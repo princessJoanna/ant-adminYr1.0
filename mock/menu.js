@@ -35,20 +35,6 @@ let database = [
     bpid: '3',
     name: '新闻动态编辑',
     route: '/new/:id',
-  },
-  {
-    id: '4',
-    icon: 'upload',
-    bpid: '1',
-    name: '合作伙伴图片上传',
-    route: '/partnerCase',
-  },
-  {
-    id: '5',
-    icon: 'upload',
-    bpid: '1',
-    name: '客户案例图片上传',
-    route: '/customerCase',
   }
 
   

@@ -22,6 +22,7 @@ module.exports = {
     userInfo: `${APIV2}/userInfo`,
     users: `${APIV1}/users`,
     newlist: `${APIV2}${mall}contentmanagement/informationquery`, 
+    delnews:`${APIV2}${mall}contentmanagement/informationdelete`,
     posts: `${APIV1}/posts`,
     user: `${APIV1}/user/:id`,
     new: `${APIV1}/new/:id`,

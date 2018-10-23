@@ -18,14 +18,14 @@ export default class AuthService {
       return false;
     }
   }
-  setToken(token) {
-    window.localStorage.setItem("TOKEN", token)
+  setToken(type,token) {
+    window.localStorage.setItem(type, token)
   }
-  getToken() {
-    return window.localStorage.getItem("TOKEN")
+  getToken(type) {
+    return window.localStorage.getItem(type)
   }
-  removeToken() {
-    window.localStorage.removeItem("TOKEN")
+  removeToken(type) {
+    window.localStorage.removeItem(type)
   }
   // logout() {
   //   axios.post("/api/login/outlogin").then(data => {

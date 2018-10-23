@@ -4,7 +4,7 @@ import { config } from 'utils'
 import * as usersService from './server'
 import { pageModel } from 'utils/model'
 
-const { query } = usersService
+const { query ,remove} = usersService
 const { prefix } = config
 
 export default modelExtend(pageModel, {
@@ -43,6 +43,17 @@ export default modelExtend(pageModel, {
           },
         })
       }
+    },
+    *dellist({ payload }, { call, put }) {
+      const data = yield call(remove, payload)
+      if (data.success) {
+        const payload = location.query ||{"pageSize":10,"page":1}
+          dispatch({
+            type: 'querylist',
+            payload,
+          })
+        
+      }
     }
 
   },
@@ -54,7 +65,7 @@ export default modelExtend(pageModel, {
         list,
         pagination
       }
-    },
+    }
 
   },
 })
