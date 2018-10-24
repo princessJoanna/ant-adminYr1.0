@@ -8,7 +8,7 @@ import Beditor from '../components/Beditor'
 
 
 
-const Edit = ({ newDetail }) => {
+const Edit = () => {
   const Option = Select.Option
  
   const handleChange=(value)=>{
