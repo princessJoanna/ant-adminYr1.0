@@ -38,23 +38,23 @@ export default modelExtend(pageModel, {
               defaultCurrent: Number(data.body.page) || 1,
               pageSize: Number(data.body.pageSize) || 10,
               total: data.body.totalCount,
-              showSizeChanger:true
+              showSizeChanger:true,
             },
           },
         })
       }
     },
-    *dellist({ payload }, { call, put }) {
+    * dellist  ({ payload }, { call }) {
       const data = yield call(remove, payload)
       if (data.success) {
-        const payload = location.query ||{"pageSize":10,"page":1}
-          dispatch({
-            type: 'querylist',
-            payload,
-          })
+        // const payload = location.query ||{"pageSize":10,"page":1}
+        //   dispatch({
+        //     type: 'querylist',
+        //     payload,
+        //   })
         
       }
-    }
+    },
 
   },
   reducers: {
@@ -63,9 +63,9 @@ export default modelExtend(pageModel, {
       return {
         ...state,
         list,
-        pagination
+        pagination,
       }
-    }
+    },
 
   },
 })

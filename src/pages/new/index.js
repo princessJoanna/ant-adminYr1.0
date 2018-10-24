@@ -1,22 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'dva'
-import { Button, Row, Form, Input } from 'antd'
-import { config } from 'utils'
+import { Button } from 'antd'
 import { routerRedux } from 'dva/router'
 import styles from './index.less'
-import { Table, Divider, Tag,Modal } from 'antd'
-import { Link } from 'react-router-dom'
+import { Table,Modal } from 'antd'
 import { Page,DropOption } from 'components'
 import queryString from 'query-string'
 import Filter from './components/Filter'
 import AuthService from '../../utils/auth-service'
 const auth = new AuthService()
-const FormItem = Form.Item
 const { confirm } = Modal
 
 const List = ({
-  loading,dispatch,getList
+  location, dispatch, getList,
 }) => {
   const handleMenuClick = (record, e) => {
     if (e.key === '1') {
@@ -25,12 +22,17 @@ const List = ({
       confirm({
         title: 'Are you sure delete this record?',
         onOk () {
-          const payload={};
-          payload.informationId=record.informationId;
-          payload.operator=auth.getToken('OPID');
+          const payload={}
+          payload.informationId=record.informationId
+          payload.operator=auth.getToken('OPID')
           dispatch({
             type: 'getList/dellist',
-            payload
+            payload,
+          })
+          .then(() => {
+            handleRefresh({
+              page: (getList.list.length === 1 && getList.pagination.current > 1) ? getList.pagination.current - 1 : getList.pagination.current,
+            })
           })
         },
       })
@@ -63,8 +65,8 @@ const List = ({
     },
     
   ]
-  const { query, pathname } = location;
-  let {list,pagination}=getList;
+  const { query, pathname } = location
+  let {list,pagination}=getList
   const goAdd=()=>{
     dispatch(routerRedux.push('/newAdd'))
   }
@@ -89,13 +91,13 @@ const List = ({
         ...value,
         page: 1,
       })
-    }
+    },
   }
-  const handleTableChange = (pagination, filters, sorter) => {
-    const payload = location.query || { page: pagination.current||1, pageSize: pagination.pageSize||10, };
+  const handleTableChange = (pagination ) => {
+    const payload = location.query || { page: pagination.current||1, pageSize: pagination.pageSize||10 }
     dispatch({
       type: 'getList/querylist',
-      payload
+      payload,
     })
 
   }
