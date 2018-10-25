@@ -13,7 +13,7 @@ export default {
 
   state: {
     imgUrl:imgUrl,
-    keyCode:''
+    keyCode:'',
   },
   subscriptions: {
 
@@ -45,19 +45,19 @@ export default {
           yield put(routerRedux.push('/new'))
         }
       } else {
-         message.error(data.errMsg);
+         message.error(data.errMsg)
        
       }
     }
-    ,* keyPair({
+    , *keyPair ({
         payload,
-      }, { put, call, select }) {
+      }, { put, call }) {
         const data = yield call(pair, payload)
         if(data.response.success){
           const code =data.response.publicKey
           yield put({
             type: 'getkeyPair',
-            code
+            code,
           
          
           })
